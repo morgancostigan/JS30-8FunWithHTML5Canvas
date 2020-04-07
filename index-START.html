@@ -15,11 +15,13 @@
   ctx.lineJoin = 'round'; //sets line joins
   ctx.lineCap = 'round'; //sets line caps
   ctx.lineWidth = 5;//sets line width
+  ctx.globalCompositeOperation = 'multiply';//blends the colors as you draw
   
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
   let hue = 0;
+  let direction = false;
 
   function draw(e) {
     if(!isDrawing) return;//this stops drawing when mouse button is up
@@ -34,6 +36,14 @@
     if(hue >= 360){
       hue = 0;
     };//end hue reset if statement //totally unneccesary
+    if(ctx.lineWidth >= 25 || ctx.lineWidth <= 5){
+      direction = !direction;
+    }//switches lineWidth between increasing and decreasing by turning direction on and off
+    if(direction){//
+      ctx.lineWidth++;//increments up
+    } else {
+      ctx.lineWidth--;//increments down
+    }//end direction IF
   }//end draw function 
 
   canvas.addEventListener('mousemove', draw);

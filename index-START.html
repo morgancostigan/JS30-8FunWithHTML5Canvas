@@ -30,6 +30,10 @@
     ctx.lineTo(e.offsetX, e.offsetY);//movement of mouse
     ctx.stroke();//puts "ink" to the canvas
     [lastX, lastY] = [e.offsetX, e.offsetY];//destructured array, handy
+    hue++;//increments up the hue
+    if(hue >= 360){
+      hue = 0;
+    };//end hue reset if statement //totally unneccesary
   }//end draw function 
 
   canvas.addEventListener('mousemove', draw);
